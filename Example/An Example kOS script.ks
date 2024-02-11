@@ -15,7 +15,10 @@ FUNCTION partFinder {
     IF developerTag:istype("List") {
         set returnInformation to LEXICON().
         FOR i in developerTag {
-            returnInformation:add(i, partFinder(i)).
+            IF i:istype("String") {
+                returnInformation:add(i:replace(" ", "_"), partFinder(i)).
+            }
+            
         }
         return returnInformation.
     }
